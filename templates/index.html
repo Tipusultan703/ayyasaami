@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Bias Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-newspaper"></i> News Bias Analyzer</h1>
+            <p>Analyze and compare news articles for media bias</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="analyze">Analyze</button>
+            <button class="tab-button" data-tab="compare">Compare</button>
+        </div>
+
+        <div class="tab-content active" id="analyze">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="url-input"><i class="fas fa-link"></i> Enter News Article URL:</label>
+                    <input type="text" id="url-input" placeholder="https://example.com/news-article">
+                    <button id="analyze-btn">Analyze</button>
+                </div>
+                <div class="or-divider">OR</div>
+                <div class="input-group">
+                    <label for="text-input"><i class="fas fa-align-left"></i> Paste Article Text:</label>
+                    <textarea id="text-input" rows="6" placeholder="Paste the news article text here..."></textarea>
+                    <button id="analyze-text-btn">Analyze Text</button>
+                </div>
+            </div>
+
+            <div id="analyze-loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing article...</p>
+            </div>
+
+            <div id="analyze-results" class="results hidden">
+                <div class="result-card">
+                    <h2><i class="fas fa-poll"></i> Analysis Results</h2>
+                    <div class="result-item">
+                        <span class="label">Source:</span>
+                        <span id="source" class="value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Credibility:</span>
+                        <span id="credibility" class="value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Bias Score:</span>
+                        <span id="bias-score" class="value"></span>
+                        <div class="bias-meter">
+                            <div class="meter-fill" id="meter-fill"></div>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Article Date:</span>
+                        <span id="article-date" class="value"></span>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-exchange-alt"></i> Neutral Rewrite</h3>
+                    <div id="rewritten-text" class="text-content"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-highlighter"></i> Biased Language Detection</h3>
+                    <div id="redlined-text" class="text-content"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-file-alt"></i> Original Text</h3>
+                    <div id="original-text" class="text-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="compare">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="compare-url-input"><i class="fas fa-link"></i> Enter News Article URL to Compare:</label>
+                    <input type="text" id="compare-url-input" placeholder="https://example.com/news-article">
+                    <button id="compare-btn">Compare</button>
+                </div>
+                <p class="info-note">
+                    <i class="fas fa-info-circle"></i> System will find similar articles from other news sources
+                </p>
+            </div>
+
+            <div id="compare-loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Searching for similar articles on other news sites...</p>
+            </div>
+
+            <div id="compare-results" class="results hidden">
+                <div class="result-card">
+                    <h2><i class="fas fa-balance-scale"></i> Comparison Results</h2>
+                    <div class="result-item">
+                        <span class="label">Main Topic:</span>
+                        <span id="main-topic" class="value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Comparison Date:</span>
+                        <span id="comparison-date" class="value"></span>
+                    </div>
+                </div>
+
+                <div class="comparison-section">
+                    <h3><i class="fas fa-newspaper"></i> Original Article</h3>
+                    <div id="original-article-details" class="article-full-details"></div>
+
+                    <h3><i class="fas fa-columns"></i> Comparison Articles</h3>
+                    <div id="comparison-articles" class="articles-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
