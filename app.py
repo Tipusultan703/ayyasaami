@@ -430,9 +430,20 @@ def check_source():
 def home():
     return render_template('index.html')
 
-if __name__ == '__main__':
-    debug_mode = os.getenv("FLASK_DEBUG", "False").lower() == "true"
-    app.run(debug=debug_mode, host="0.0.0.0", port=5000)
+@app.route('/healthz')
+def health_check():
+    return "OK", 200
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
+
+#if __name__ == '__main__':
+#   debug_mode = os.getenv("FLASK_DEBUG", "False").lower() == "true"
+#  app.run(debug=debug_mode, host="0.0.0.0", port=5000)
+
+
 
 
 
